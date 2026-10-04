@@ -82,7 +82,7 @@ async function admin(){
  sg.onclick=()=>{const v=parseFloat(g.value);if(v>0){S.goal=v;save()}};
  f.append(n,am,m,lb,add,g,sg,msg);document.getElementById('app').append(f);
 }
-const SHEET='https://docs.google.com/spreadsheets/d/17jJ11PkEuns2DA1qLxR8XvM3wn-cjwPh_BQsH81tJIY/pub?output=csv&gid=0';
+const SHEET='https://docs.google.com/spreadsheets/d/e/2PACX-1vSdbbKrSPwaIU_-2yb3rxBZjK7xouP74057V_mnlI1GrsLqbNgj8L8stUqxrW5kpxCL0dVIKhZ-WRTi/pub?gid=0&single=true&output=csv';
 function csv(t){const rows=[];let r=[],c='',q=false;for(let i=0;i<t.length;i++){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=h}else if(h=='"')q=true;else if(h==','){r.push(c);c=''}else if(h=='\n'||h=='\r'){if(h=='\r'&&t[i+1]=='\n')i++;r.push(c);rows.push(r);r=[];c=''}else c+=h}if(c||r.length){r.push(c);rows.push(r)}return rows}
 function fromSheet(t){const rows=csv(t),hd=(rows[0]||[]).map(x=>x.trim().toLowerCase()),ix=k=>hd.indexOf(k);
  if(ix('amount')<0)return null;
