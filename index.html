@@ -51,7 +51,7 @@ body.tv{overflow:hidden;cursor:none;height:100vh;margin:0}
 .tv .qrs figure{display:flex;flex-direction:column;align-items:center}
 .tv .qrs img{width:286px;height:286px;padding:8px}
 .tv .qrs figcaption{font-size:19px;margin-top:4px}
-.tv .note,.tv .tvlink,.tv .admin{display:none}
+.tv .note,.tv .tvlink,.tv .admin{display:none}.qrs .hdl{font-family:var(--hd);color:var(--tx);font-size:13px;margin-top:3px;overflow-wrap:anywhere}.qrs .hdl a{color:inherit;text-decoration:underline}.tv .qrs .hdl{display:none}.card{display:flex;flex-direction:column}.card img{flex:none}.ch{min-height:3.1em;padding:6px 8px 6px 4px}.ch span{line-height:1.15;min-width:0}.card p{flex:1 0 auto;padding:0 12px 4px}.st{padding:4px 12px}.card small{padding:2px 12px 8px;min-height:2.9em}.tv .ch{min-height:0}.tv .card small{min-height:0}@media(max-width:760px){.tiles,.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:380px){.card small{min-height:3.7em}}@media(max-width:340px){.ch{min-height:4.4em}}
 </style></head><body><div id="app"></div>
 <script type="application/json" id="state">{"goal":500,"donations":[]}</script>
 <script>
@@ -82,7 +82,7 @@ function render(){
   im.src=IMGS[i];im.alt=n;h.append($('b','','$'+p),$('span','',n));
   c.append(im,h,$('p','',ds),$('div','st',on?Math.floor(tot/p)+'× COVERED SO FAR':'UNLOCKS AT $'+p.toLocaleString()),$('small','',cr));grid.append(c)});
  const pay=$('div','pay'),qrs=$('div','qrs');pay.append($('div','sec','SCAN TO DONATE'));
- [['Zelle',Q[0]],['Cash App',Q[1]],['Venmo',Q[2]]].forEach(([n,src])=>{const f=$('figure'),im=$('img');im.src=src;im.alt=n+' QR code';f.append(im,$('figcaption','',n));qrs.append(f)});
+ [['Zelle',Q[0],'917-685-9366',null],['Cash App',Q[1],'$ewolf1019','https://cash.app/$ewolf1019'],['Venmo',Q[2],'@elliotwolf','https://venmo.com/u/elliotwolf']].forEach(([n,src,h,u])=>{const f=$('figure'),im=$('img'),hd=$('div','hdl');im.src=src;im.alt=n+' QR code';if(u){const a=$('a','',h);a.href=u;a.target='_blank';a.rel='noopener';hd.append(a)}else hd.textContent=h;f.append(im,$('figcaption','',n),hd);qrs.append(f)});
  pay.append(qrs);
  app.append(tiles,bar);if(!TV)app.append(pay);
  app.append($('div','sec','RECENT DONATIONS'),rec,$('div','sec','WHAT DONATIONS CAN FUND'),grid,$('p','note','Illustrative examples from MSF, not earmarked purchases.'),Object.assign($('a','tvlink','Open full-screen dashboard'),{href:'?tv'}));
