@@ -30,7 +30,7 @@ h1{font:800 clamp(22px,4.5vw,40px)/1.15 var(--hd);text-align:center;margin:8px 0
 .qrs img{width:100%;display:block;background:#fff;padding:8px;box-sizing:border-box;border-radius:8px}
 .qrs figcaption{font-family:var(--hd);color:var(--lab);margin-top:6px;font-size:14px}
 body.tv{overflow:hidden;cursor:none;height:100vh;margin:0}
-.tv #app{position:absolute;left:0;top:0;width:1920px;height:1080px;max-width:none;box-sizing:border-box;padding:26px 36px;transform-origin:0 0;overflow:hidden;display:grid;grid-template-columns:1fr 330px;grid-template-rows:auto auto auto auto auto auto 1fr;column-gap:28px;row-gap:10px}
+.tv #app{position:absolute;left:0;top:0;width:1920px;height:1080px;max-width:none;box-sizing:border-box;padding:26px 36px;transform-origin:0 0;overflow:hidden;display:grid;grid-template-columns:1fr 330px;grid-template-rows:auto auto auto auto auto auto auto 1fr;column-gap:28px;row-gap:10px}
 .tv #app>*{grid-column:1;min-width:0}
 .tv #app>.pay{grid-column:2;grid-row:1/-1;margin:0;min-height:0}
 .tv h1{font-size:50px;margin:0;line-height:1.1}
@@ -49,10 +49,10 @@ body.tv{overflow:hidden;cursor:none;height:100vh;margin:0}
 .tv .card small{flex:none;font-size:11px;padding:1px 10px 6px}
 .tv .qrs{grid-template-columns:1fr;gap:10px;max-width:none;margin:8px 0 0}
 .tv .qrs figure{display:flex;flex-direction:column;align-items:center}
-.tv .qrs img{width:272px;height:272px;padding:8px}
+.tv .qrs img{width:286px;height:286px;padding:8px}
 .tv .qrs figcaption{font-size:19px;margin-top:4px}
 .tv .note,.tv .tvlink,.tv .admin{display:none}.qrs .hdl{font-family:var(--hd);color:var(--tx);font-size:13px;margin-top:3px;overflow-wrap:anywhere}.qrs .hdl a{color:inherit;text-decoration:underline}.tv .qrs .hdl{display:none}.card{display:flex;flex-direction:column}.card img{flex:none}.ch{min-height:3.1em;padding:6px 8px 6px 4px}.ch span{line-height:1.15;min-width:0}.card p{flex:1 0 auto;padding:0 12px 4px}.st{padding:4px 12px}.card small{padding:2px 12px 8px;min-height:2.9em}.tv .ch{min-height:0}.tv .card small{min-height:0}@media(max-width:760px){.tiles,.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:380px){.card small{min-height:3.7em}}@media(max-width:340px){.ch{min-height:4.4em}}
-.donate{text-align:center;margin-top:12px;font-size:14px;line-height:1.35;color:var(--tx)}.donate a{color:var(--lab);font-family:var(--hd);font-weight:700;text-decoration:underline;overflow-wrap:anywhere}.tv .donate{font-size:19px;margin-top:6px;line-height:1.25}.tv .donate a{text-decoration:none}
+.donate{text-align:center;margin-top:14px;font-size:17px;line-height:1.4;color:var(--tx)}.donate a{display:inline-block;margin-top:2px;color:var(--lab);font-family:var(--hd);font-weight:800;font-size:clamp(20px,5.2vw,28px);text-decoration:underline;overflow-wrap:anywhere}.tv .donate{display:none}.dbar{display:none}.tv .dbar{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:22px;row-gap:0;text-align:center;line-height:1.15}.tv .dbar span{font-family:var(--hd);color:var(--lab);font-size:21px;letter-spacing:.05em}.tv .dbar b{font-family:var(--hd);font-weight:800;color:var(--tx);font-size:38px;overflow-wrap:anywhere}
 </style></head><body><div id="app"></div>
 <script type="application/json" id="state">{"goal":500,"donations":[]}</script>
 <script>
@@ -73,6 +73,7 @@ function render(){
  const app=document.getElementById('app');app.innerHTML='';
  const tot=S.donations.reduce((s,d)=>s+d.a,0),rem=Math.max(0,S.goal-tot);
  app.append($('h1','','MSF and CPJ Birthday Fundraiser'));
+ if(TV)app.append(Object.assign($('div','dbar'),{innerHTML:'<span>DONATE + LEAVE A MESSAGE:</span><b>tinyurl.com/birthdaydonate</b>'}));
  const tiles=$('div','tiles');
  [['RAISED','$'+tot],['CURRENT GOAL','$'+S.goal,'goal'],['REMAINING','$'+rem],['DONORS',S.donations.length]].forEach(([l,v,c])=>{const t=$('div','tile '+(c||''));t.append($('div','lab',l),$('div','num',v));tiles.append(t)});
  const bar=$('div','bar'),fill=$('i');fill.style.width=(tot/Math.max(tot,S.goal)*100)+'%';bar.append(fill);
